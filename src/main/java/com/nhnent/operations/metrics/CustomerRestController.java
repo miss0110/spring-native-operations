@@ -1,7 +1,6 @@
 package com.nhnent.operations.metrics;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +24,13 @@ public class CustomerRestController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<?> get(@PathVariable Long id) {
         return this.customerRepository.findById(id).map(customer -> {
-            String metricName = metricPrefix("customers.read.found");
-            this.counterService.increment(metricName); // <2>
+            ////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////
             return ResponseEntity.ok(customer);
+            //
         }).orElseGet(() -> {
-            String metricName = metricPrefix("customers.read.not-found");
-            this.counterService.increment(metricName); // <3>
+            ////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////
             return ResponseEntity.class.cast(ResponseEntity.notFound().build());
         });
     }

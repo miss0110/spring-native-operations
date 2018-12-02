@@ -1,3 +1,14 @@
 management:
   security:
     enabled: false
+spring:
+  http:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+info:
+  app:
+    name: Spring Actuator
+    description: This is my first spring boot application
+    version: 1.0.0
